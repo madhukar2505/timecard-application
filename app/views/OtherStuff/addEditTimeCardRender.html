@@ -1,0 +1,32 @@
+<!--=======================================-->
+<!-- The following is the ADD/EDIT MODAL BLOCK -->
+<!--=======================================-->
+#{form @postTimeAddition2(), class:'form-horizontal', style:'min-width:500px;max-width:800px;margin: 0 auto'}
+	<input id="addEditTimeCard_ID" type="hidden" name="timeCardId" value="${timeCard?.id}">
+	<div id="myAddEditModal" class="modal hide" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="addEditModalLabel" aria-hidden="true">
+	<div id="dbAddEditModal_content" class="modal-body">
+	           <p>	TimeCard Of <strong> ${beginOfWeek}</strong> </p>
+				<table class="table table-striped table-bordered table-condensed">
+					<tr>
+						<th class="span2">Day</th>
+						<th class="span2">No. of hours</th>
+						<th class="span2">Remarks  ${readOnly}</th>
+					</tr>
+					
+					#{list timeCard?.daycards, as:'dcObj'}
+					    <tr><input type="hidden" name="dayCardsid[${dcObj_index-1}]" value="${dcObj?.id}">
+							 <td  class="span2"><input  name="dateId[${dcObj_index-1}]" value="${dcObj?.date}" readonly="true" ></td>
+							 <td  class="span2"><div class="time"><input class="input-small" type="number" placeholder="Hours" name="noofhours[${dcObj_index-1}]" min="0" max="12" value="${dcObj?.numberOfHours}" #{if readOnly} readonly="readonly" #{/if}></div></td>
+							 <td  class="span2"><input id="detailId_${i}" type="text" placeholder="Remark" name="details[${dcObj_index-1}]" value="${dcObj?.detail}" #{if readOnly} readonly="readonly" #{/if}></td>
+						</tr>
+					#{/list}
+				</table>	
+	${status}
+	</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<input type="submit" name="submit" value="Save" class="btn434 btn-primary" />
+		</div>
+	  </div>
+	  
+#{/form}

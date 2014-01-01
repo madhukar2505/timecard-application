@@ -1,0 +1,55 @@
+#{extends 'main.html' /}
+#{set title:'Sign Up' /}
+
+
+<div id="sign_in2">
+        <div class="container">
+		<br/>
+            <div class="row login">
+                <div class="span5 left_box">
+                   <p><strong>Register to submit your time cards quickly</strong></p>
+
+                    <div class="perk_box">
+                        <div class="perk">
+                            <span class="icos ico1"></span>
+                            <p><strong>Lorem alteration</strong> in some form  injected humour these randomised words .</p>
+                        </div>
+                        <div class="perk">
+                            <span class="icos ico2"></span>
+                            <p><strong>There are many variations</strong> of passages of Lorem alteration in some form  injected humour these randomised words.</p>
+                        </div>
+                        <div class="perk">
+                            <span class="icos ico3"></span>
+                            <p><strong>Alteration in some form</strong> injected humour these randomised words.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="span6 signin_box">
+                    <div class="box">
+                        <div class="box_cont">
+                               <div class="division">
+                                <div class="line l"></div>
+                                <span>Sign Up</span>
+                                <div class="line r"></div>
+                            </div>
+                            <div class="form">
+                            
+				    			#{form @Register.postUserRegister()}
+				    					<input type="text" placeholder="email" name="email" value = "${email}" readonly="readonly" />
+                        				<input type="password" placeholder="Password" name="password" value = "" />
+                        				<input type="password" placeholder="Confirm Password" name= "verifyPassword" value="" />
+				                 		<input type="text" placeholder="First Name" name="firstName" value=""/>
+				                 		<input type="text" placeholder="Last Name" name="lastName" value=""/>
+				                 		<input type="text" placeholder="Phone" name="phone" value=""/>
+				                        <input type="submit" value="Sign Up"/>
+				                #{/form}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div> 

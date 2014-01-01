@@ -1,0 +1,50 @@
+#{extends 'main.html' /}
+#{set title:'Add User' /}
+
+
+<div id="sign_in2">
+        <div class="container">
+		<br/>
+            <div class="row login">
+                <div class="span5 left_box">
+                   <p><strong>Register your user and facilitate them to submit the time cards quickly</strong></p>
+
+                    <div class="perk_box">
+                        <div class="perk">
+                            <span class="icos ico1"></span>
+                            <p><strong>Your user will </strong> receive an email so that they can complete the registration .</p>
+                        </div>
+                        <div class="perk">
+                            <span class="icos ico2"></span>
+                            <p><strong>Please assign a manager to the user</strong> otherwise you will be his default manager.</p>
+                        </div>
+                        <div class="perk">
+                            <span class="icos ico3"></span>
+                            <p><strong>Make sure </strong> to enter a valid email id.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="span6 signin_box">
+                    <div class="box">
+                        <div class="box_cont">
+                               <div class="division">
+                                <div class="line l"></div>
+                                <span>User</span>
+                                <div class="line r"></div>
+                            </div>
+                            <div class="form">
+				    			#{form @OtherStuff.postUserAddition()}
+				                 		<input type="text" placeholder="User's Email" name="useremail" value=""/>
+										#{select 'manager', items:users, valueProperty:'email', labelProperty:'email', placeholder:"Manager" , id:'manager' /}				                 		
+				                 		
+				                 		<input type="submit" value="Add User"/>
+				                #{/form}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 

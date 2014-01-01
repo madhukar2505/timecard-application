@@ -1,0 +1,36 @@
+<!-- begin header -->
+<div class="header clearfix">
+	<div class="top clearfix">
+		<div class="logo lt">
+			<h1><a href="#"><img src="/res/images/logo.gif" alt="alvazan.com" /></a></h1>
+		</div>
+
+	    <a href="#" styleClass="logout rt">forgot password?</a>
+	    <a href="" styleClass="logout rt">Register</a>
+	    <a href="" styleClass="logout rt">Log in</a>
+	</div>
+	<ul id="mun" class="mun clearfix">
+		<li class="clearfix" id="page_home">
+		    <a href=""><strong>Premonition X</strong></a>
+		</li>
+		<li class="clearfix" id="page_demo">
+		    <a href="#"><strong>Demo</strong></a>
+		</li>
+		<li class="clearfix" id="page_pricing">
+			<a href=""><strong>Pricing</strong></a>
+		</li>
+		<li class="clearfix" id="page_blog">
+			<a href="http://blog.alvazan.com"><strong>Blog</strong></a>
+		</li>
+	</ul>
+</div>
+<script type="text/javascript" language="JavaScript">
+    		   function setClass(id, className) {
+    		        var obj = document.getElementById(id);
+       			     if (obj != null) {
+        		        obj.className = className;
+        		    }
+				}
+        		setClass("page_" + "${_page}", "cutter");
+</script>
+<!-- end header -->

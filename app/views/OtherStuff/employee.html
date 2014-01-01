@@ -1,0 +1,76 @@
+#{extends './userTemplate.html' /}
+
+<div id="id1">
+	<div class="container">
+		<h4>Timecardz of ${email}</h4>
+		</br>
+	</div>
+	<div id="addEditModalDiv"></div>
+	<div id="deleteModalDiv"></div>
+	#{ifnot timeCards}
+	<a href="#myAddEditModal" data-toggle="modal" class="btn btn-primary" id="myAddEditModal_add">Add new Time Card</a>#{/ifnot} 
+		#{else}
+	<table class="table table-striped table-bordered table-condensed">
+		<thead>
+			<tr>
+				<th>Week</th>
+				<th>No. of Hours</th>
+				<th>Status</th>
+				<th>Action</th>
+				
+								
+		 </thead>
+		 <tbody>
+			#{list timeCards, as:'timeCard'}
+			<tr>
+				<td>${timeCard.beginOfWeek}</td>
+				<td>${timeCard.numberOfHours}</td>
+				<td>${timeCard.status}</td>
+				<td><a id="myaddEdit_${timeCard_index-1}" class="btn1" href="#" >edit</a> &nbsp |&nbsp <a id="myDelete_${timeCard_index-1}" class="btn1" href="#" >delete</a>
+					<script type="text/javascript">
+						$('#myaddEdit_${timeCard_index-1}').click(function (e) {
+							e.preventDefault();
+								$('#addEditModalDiv').load(getAddEditTimeCard({timeCardId:'${timeCard.id}'}),function(){
+						    	$("#myAddEditModal").modal('show');
+						    });   
+						    
+						});
+					</script>
+	  				<script type="text/javascript">
+						$('#myDelete_${timeCard_index-1}').click(function (e) {
+							e.preventDefault();
+							
+						    $('#deleteModalDiv').load(getDeleteTimeCard({timeCardId:'${timeCard.id}'}),function(){
+						    	$("#myDeleteModal").modal('show');
+						    });   
+						    
+						});
+					</script>
+	  			</td>
+	  			
+	  			
+			</tr>
+			#{/list}
+		 </tbody>
+	</table>
+	</br> #{if timeCard.beginOfWeek != beginOfWeek}	<a href="#myAddEditModal" data-toggle="modal" class="btn btn-primary" id="myAddEditModal_add">Add new Time Card</a>#{/if} 
+		#{/else}
+</div>
+	
+<p style="clear: both;">
+   	<script type="text/javascript">
+   	var getAddEditTimeCard= #{jsAction @OtherStuff.addEditTimeCardRender(':timeCardId') /}
+   	var getDeleteTimeCard= #{jsAction @OtherStuff.deleteTimeCardRender(':timeCardId') /}
+  	$(document).ready(function() {	
+  	$("#myAddEditModal_add").click(function(e){
+  		$('#addEditModalDiv').load(getAddEditTimeCard(),function(){
+  			$("#myAddEditModal").modal('show');	
+  		});
+  		
+  	});
+  	});
+  	
+  	</script>
+</p>
+
+

@@ -1,0 +1,38 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                         Application.index
+GET		/signin                                   Application.signin
+GET     /signup                                   Application.signup
+GET     /contact                                  Application.contact
+GET     /about                                    Application.about
+GET     /blog                                     Application.blog
+GET     /pricing                                  Application.pricing
+
+
+GET     /admindashboard                         OtherStuff.company
+GET     /addcompany                             OtherStuff.addCompany
+GET     /companydetails                         OtherStuff.companyDetails
+GET     /adduser                         		OtherStuff.addUser
+GET     /dashboard								OtherStuff.dashboard
+GET     /employee							    OtherStuff.employee
+GET     /addedittimecardrender/{timeCardId}		OtherStuff.addEditTimeCardRender
+GET     /deleteTimeCardRender/{timeCardId}	    OtherStuff.deleteTimeCardRender
+GET     /usercards								OtherStuff.userCards
+GET     /detail/{timeCard}					    OtherStuff.detail
+GET     /detailEmployee/{timeCard}	            OtherStuff.detailEmployee 
+GET     /usersignup                        		Register.userRegister
+GET     /usersignup2/{token}                    Register.userRegister2
+
+GET     /ourpattern                    			OurPattern.pattern
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

@@ -1,0 +1,13 @@
+*.class
+
+# Package Files #
+tmp/
+/eclipse/
+play*/*/*/*.pyc
+play*/*/*/*/*.pyc
+play*/*/*/*/*/*.pyc
+play*/*/*/*/*/*/*.pyc
+play*/*/*/*/*/*/*/*.pyc
+/.project
+/.settings
+*.bak

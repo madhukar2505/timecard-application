@@ -1,0 +1,34 @@
+#{extends './userTemplate.html' /}
+
+<div class="container">
+	<h2>Time cards of ${email}</h2>
+	</br>
+</div>
+#{ifnot timeCards}
+<span style="color: blue;">There is no time card from this user</span>
+#{/ifnot} #{else}
+<table class="table table-striped table-bordered table-condensed">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>No. of Hours</th>
+			<th>Status</th>
+
+		</tr>
+	</thead>
+	#{list timeCards, as:'timeCard'}
+	<tbody>
+		<tr>
+			<th><a href="@{OtherStuff.detail(timeCard.id)}">
+					${timeCard.beginOfWeek}</a></th>
+			<th>${timeCard.numberOfHours}</th>
+			<th>${timeCard.status}</th>
+		</tr>
+	</tbody>
+	#{/list}
+</table>
+
+#{/else}
+
+
+

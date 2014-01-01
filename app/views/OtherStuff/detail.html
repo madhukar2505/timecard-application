@@ -1,0 +1,71 @@
+#{extends './userTemplate.html' /}
+
+<div class="container">
+<h3>Time sheet for week starting ${timeCard.beginOfWeek}</h3>
+</div>
+       <div align="right">
+			 <table >
+			         <tr>
+				           <td >	
+				          	 <div class="dropdown"> <a href="#" class="btn btn-primary dropdown-toggle login" id="action-drop" data-toggle="dropdown">Action</a>
+	            				<div class="dropdown-menu" role="menu" aria-labelledby="action-drop">              
+									   #{form @OtherStuff.cardsAction(), class:'form-inline'}
+						                <div align="center">
+											<input type="hidden" name="timeCardId" value=${timeCard.id}></input>
+											#{select "status", class:'span2', value:1, id:'status'}
+												#{option 1}Approve #{/option}
+												#{option 2}Reject #{/option}
+											#{/select}	
+						                  <input  class="btn btn-primary btn-small pull-right" value="Submit" type="submit"></input>
+						                </div>
+						               #{/form}
+	          					</div>
+				            </div>
+				          				                
+				          </td>
+			          </tr>
+			        
+		     </table>
+		 </div>
+		 </br>     		
+		 <table class="table table-striped table-bordered table-condensed">
+			       <thead>
+			             <tr>
+		                       <th>Date</th> 
+		                       <th>No. of Hours</th>
+		                       <th>Remark</th>
+		                  </tr>
+			       </thead>
+			           <tbody>
+		       		       #{list dayCardDbo, as:'dayCard'}
+		       		        <tr>
+		       		           <td>
+		       		            	${dayCard.date}
+		       		           </td>
+		       		           <td>
+		       		                ${dayCard.numberOfHours} 
+		       		           </td>
+		       		           <td>
+		       		               	${dayCard.detail}
+		       		           </td>
+		       		        </tr>
+		       		       #{/list}
+		          	   </tbody>
+		 </table> 
+		          		 
+		          		
+	 <div align="right"> 
+		   <h4>Total hrs: ${timeCard.numberOfHours}</h4> 
+		    <table>
+		         <tr>
+		              <th>
+		                 <h4>Status:</h4>		              
+		              </th>
+		              <td >
+					    <h4>${timeCard.status}</h4>
+				      </td>
+				  </tr>
+		           
+		     </table> 
+     </div>
+		   

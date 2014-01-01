@@ -1,0 +1,108 @@
+#{extends './userTemplate.html' /}
+<div class="container">
+</div>
+<script>
+	$(document).ready(function() {
+		$(".time input").bind("change", updatesum);
+	});
+	var updatesum = function() {
+		var sum = 0;
+		$(".time input").each(function() {
+			sum += parseInt($(this).val());
+		});
+		var hellodiv = $("#hello");
+		$(hellodiv).empty()
+		$(hellodiv).append("Sum of the total hours is:" + sum);
+	}
+</script>
+<h4>Time Card of <strong> ${timeCard.beginOfWeek}</strong></h4>
+        <div align="right"><a href=" @{OtherStuff.employee()}" class="btn active"><i class="fam-arrow-left"></i> Back</a></div>
+          </br>
+           #{if readOnly}
+                     <div class="form">
+				    			#{form @OtherStuff.updateTimeAddition()}    				
+				    				<input type="hidden" name="timeCardId" value="${timeCard.id}"/>
+				                 		<table class="table table-striped table-bordered table-condensed">
+				                 			<tr>
+				                 				<th class="span2">
+				                 				date
+				                 				</th>
+				                 				<th class="span2">
+				                 				No. of hours
+				                 				</th>
+				                 				<th class="span2">
+				                 				Remarks
+				                 				</th>
+				                 			</tr> 
+				                 			%{ 
+				                 				String[] dayCardsid = new String[7]; 
+				                 			}%
+				                 			#{list dayCardDbo, as:'dayCard'}
+				                 				<input type="hidden" name="dayCardsid[${dayCard_index-1}]" value="${dayCard.id}"/>
+					                 			<tr>
+					                 				<td class="span2">${dayCard.date}
+					                 				</td>
+					                 				<td class="span2">
+					                 				<input type="number" placeholder="Hours" name="noofhours[${dayCard_index-1}]" value="${noofhours[dayCard_index-1]}" readonly="readonly"/>	
+					                 				</td>
+					                 				<td class="span2">
+					                 				<input type="text" placeholder="Remark" name="details[${dayCard_index-1}]" value="${details[dayCard_index-1]}" readonly="readonly"/>
+					                 				</td>
+					                 			</tr>
+					                 		#{/list}
+				                 		</table>                				                 		
+				                 	  <div align="right">Total No of Hours:${timeCard.numberOfHours}</br>
+			                          status:${timeCard.status}
+			                       </div>
+				                #{/form}
+            #{/if}
+            #{else}
+                            <div class="form">
+				    			#{form @OtherStuff.updateTimeAddition()}    				
+				    				<input type="hidden" name="timeCardId" value="${timeCard.id}"/>
+				                 		<table class="table table-striped table-bordered table-condensed">
+				                 			<tr>
+				                 				<th class="span2">
+				                 				Date
+				                 				</th>
+				                 				<th class="span2">
+				                 				No. of hours
+				                 				</th>
+				                 				<th class="span2">
+				                 				Remarks
+				                 				</th>
+				                 			</tr> 
+				                 			%{ 
+				                 				String[] dayCardsid = new String[7]; 
+				                 			}%
+				                 			#{list dayCardDbo, as:'dayCard'}
+				                 				<input type="hidden" name="dayCardsid[${dayCard_index-1}]" value="${dayCard.id}"/>
+					                 			<tr>
+					                 				<td class="span2">${dayCard.date}
+					                 				</td>
+					                 				<td class="span2">
+					                 				<div class="time">
+					                 				<input type="number" placeholder="Hours" name="noofhours[${dayCard_index-1}]" value="${noofhours[dayCard_index-1]}"/>
+					                 				</div>	
+					                 				</td>
+					                 				<td class="span3">
+					                 				<input type="text"  placeholder="Remark" name="details[${dayCard_index-1}]" value="${details[dayCard_index-1]}"/>
+					                 				</td>
+					                 			</tr>
+					                 		#{/list}
+				                 		</table>
+				                 		 <div id="hello" align="right" >
+             
+                                         </div>
+			                       
+
+			                         <div align="right" class="input-prepend">
+                                      <i class="icon-user icon-white"></i>
+                                      <input type="submit" class="btn-primary" value="Update" >
+                                     </div>             				                 		
+				          
+				                #{/form}
+                            </div>
+             #{/else}
+             
+             
